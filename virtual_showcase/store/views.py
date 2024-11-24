@@ -118,7 +118,7 @@ def cart_view(request):
 @login_required
 def checkout(request):
     # Получаем текущий заказ пользователя, если он есть
-    order = Order.objects.get_or_create(user=request.user, status='Pending')
+    order, _ = Order.objects.get_or_create(user=request.user, status='Pending')
 
     # Если заказ пустой (пользователь уже завершил заказ или корзина пуста), редиректим на страницу корзины
     cart_items = OrderItem.objects.filter(order__user=request.user, order__status='Pending')
@@ -126,14 +126,12 @@ def checkout(request):
         return redirect('cart')
 
     # Если корзина не пуста, создаем новый заказ и добавляем товары
-    for item in cart_items:
-        order.add_item(item.product, item.quantity)
+
     
     # Рассчитываем итоговую сумму заказа
     order.calculate_total()
-    
-    # Удаляем элементы корзины
-    # cart_items.delete()
+    order.status = "At work"
+    order.save()
 
     # Перенаправляем пользователя на страницу с его заказами
     return redirect('profile')
