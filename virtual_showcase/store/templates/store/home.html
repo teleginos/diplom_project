@@ -1,0 +1,40 @@
+{% extends 'store/base.html' %}
+
+{% block title %}Virtual showcase{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <!-- Боковое меню с категориями
+    <div class="sidebar">
+        <h2>Категории</h2>
+        <ul class="categories">
+            {% for category in categories %}
+                <p>{{ category.name }}</p>
+            {% endfor %}
+        </ul>
+    </div> -->
+
+    <!-- Основной контент -->
+    <div class="main-content">
+        <div class="hero">
+            <h2>Добро пожаловать в наш интернет-магазин!</h2>
+            <p>Лучшие товары по лучшим ценам. Ознакомьтесь с нашим ассортиментом!</p>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <h3>Широкий ассортимент</h3>
+                <p>Мы предлагаем товары на любой вкус и бюджет.</p>
+            </div>
+            <div class="feature">
+                <h3>Быстрая доставка</h3>
+                <p>Доставляем заказы в кратчайшие сроки.</p>
+            </div>
+            <div class="feature">
+                <h3>Качество гарантировано</h3>
+                <p>Только проверенные поставщики и лучшие товары.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

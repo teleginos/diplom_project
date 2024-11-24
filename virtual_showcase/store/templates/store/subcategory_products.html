@@ -1,0 +1,28 @@
+{% extends 'store/base.html' %}
+
+{% block title %}{{ subcategory.name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Товары в подкатегории: {{ subcategory.name }}</h2>
+    {% if products %}
+        <div class="row">
+            {% for product in products %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <p class="card-text">{{ product.description|truncatechars:100 }}</p>
+                            <p class="card-text fw-bold">{{ product.price }} ₽</p>
+                            <a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary">Купить</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center">В данной подкатегории пока нет товаров.</p>
+    {% endif %}
+</div>
+{% endblock %}

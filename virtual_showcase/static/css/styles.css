@@ -1,0 +1,35 @@
+/* Добавьте эти стили в ваш CSS-файл */
+.main-container {
+    display: flex;
+}
+
+.sidebar {
+    width: 20%;
+    padding: 10px;
+    background-color: #f9f9fa;
+    border-right: 1px solid #eaeaea;
+    min-height: 100%;
+}
+
+.categories li {
+    list-style-type: none;
+    margin-bottom: 5px;
+}
+
+.categories a {
+    text-decoration: none;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 15px;
+}
+
+.flex-container {
+    display: flex;
+    height: 100vh; /* Устанавливаем высоту контейнера равной высоте окна браузера */
+}
+
+.main-section {
+    overflow-y: auto; /* Добавляем прокрутку для основного содержимого, если оно превышает высоту экрана */
+}

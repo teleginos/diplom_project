@@ -1,0 +1,46 @@
+{% extends 'store/base.html' %}
+
+{% block title %}Профиль пользователя{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Профиль пользователя</h2>
+    <p><strong>Username пользователя:</strong> {{ user.username }}</p>
+    {% if user.first_name %}
+        <p><strong>Имя:</strong> {{ user.first_name }}</p> 
+    {% else %}
+        <p><strong>Имя: Не задано</strong></p>
+    {% endif %}
+    {% if user.last_name %}
+        <p><strong>Фамилия:</strong> {{ user.last_name }}</p>
+    {% else %}
+        <p><strong>Фамилия: Не задано</strong></p>
+    {% endif %}
+    <p><strong>Email:</strong> {{ user.email }}</p>
+
+    <h3>Мои заказы:</h3>
+    {% if orders %}
+    <ul>
+        {% for order in orders %}
+        <li>
+            <strong>Заказ #{{ order.id }}</strong><br>
+            Статус: {{ order.status }}<br>
+            Общая сумма: {{ order.total_price }}<br>
+            Дата создания: {{ order.created_at }}<br>
+            <ul>
+                {% for item in order.items.all %}
+                <li>
+                    {{ item.quantity }} x {{ item.product.name }} ({{ item.price_at_time }} руб.)
+                </li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>У вас нет заказов.</p>
+    {% endif %}
+    
+    <a href="{% url 'profile_edit' %}" class="btn btn-primary">Редактировать профиль</a>
+</div>
+{% endblock %}
